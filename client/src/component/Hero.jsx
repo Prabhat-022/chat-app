@@ -8,6 +8,7 @@ const Hero = () => {
             <div className="bg-gray-600  h-[100vh] flex items-center justify-center">
                 <div className="border flex">
                     <Leftlayout />
+
                     <Rightlayout />
                 </div>
             </div>

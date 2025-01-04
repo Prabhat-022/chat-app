@@ -19,3 +19,12 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+#dotenv
+.env
+
+#file
+.chat.txt
+
+
+

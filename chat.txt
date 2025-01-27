@@ -3,3 +3,7 @@
 -> 3. Fixed the leftlogout div height 
 -> 4. When press on enter button than work all the functionality like send the message,
       search the users, 
+-> 5. solve the npm run build error
+-> 6. push the code on github  
+-> 7. than update the projects on renders 
+-> 7.

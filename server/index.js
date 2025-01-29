@@ -15,7 +15,6 @@ dotenv.config({
 
 const port = process.env.PORT || 6000;
 
-
 // For parsing application/json
 app.use(express.json());
 app.use(cookieParser());
@@ -29,10 +28,13 @@ app.use(cors({
     credentials: true,
 }));
 
+app.get('/', (req, res) => {
+    res.send('Hello, I am coming from backend!');
+})
+
 // Create API
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/message", messageRoutes);
-
 
 
 server.listen(port, () => {

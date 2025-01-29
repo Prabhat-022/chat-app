@@ -53,8 +53,9 @@ const Register = () => {
 
     return (
         <>
-            <div className="sm:fixed min-h-screen bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ">
-                <div className="max-w-md w-full space-y-8 bg-gray-700 p-8 rounded-xl shadow-2xl">
+            <div className="sm:fixed bg-gray-900 min-h-screen min-w-screen bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ">
+
+                <div className="max-w-md w-screen space-y-8 bg-gray-700 p-8 rounded-xl shadow-2xl  ">
                     <div>
                         <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
                             Create Account
@@ -111,7 +112,7 @@ const Register = () => {
                                     onChange={(e) => setregisterdata({ ...registerdata, password: e.target.value })}
                                 />
                             </div>
-                            
+
                             <div>
                                 <input
                                     type="file"

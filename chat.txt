@@ -1,3 +1,6 @@
+-> Deploy on the renders 
+
+
 ************** Chat TODO LIST **************
 -> 2. appling the toaster functionality
 -> 3. Fixed the leftlogout div height 

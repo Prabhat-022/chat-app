@@ -1,4 +1,3 @@
-
 import express from 'express';
 import dotenv from "dotenv";
 import userRoutes from './src/routes/userRoutes.js';
@@ -32,17 +31,16 @@ app.use(cors({
     credentials: true,
 }));
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 // Create API
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/message", messageRoutes);
-// app.use(express.static(path.join(__dirname, 'client', 'dist')));
-app.use(express.static(path.join(__dirname, '/client/dist')));
 
-
-// Route to serve the index.html
+// Handle all other routes by serving the index.html from the React app
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 });
 
 server.listen(port, () => {

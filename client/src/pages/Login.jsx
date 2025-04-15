@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { setLoginUser } from "../redux/userSlice";
+import { getAlltheUsers, setLoginUser } from "../redux/userSlice";
 import {toast}  from 'react-hot-toast';
 
 const Login = () => {
@@ -47,9 +47,12 @@ const Login = () => {
 
                 // Show success message to user
                 if (response.data.success) {
+
                     // Navigate to home page on successful login
                     dispatch(setLoginUser(response.data.user));
+                    dispatch(getAlltheUsers());
                     navigate("/home");
+                    
                     toast.success(response.data.message);
 
                 }

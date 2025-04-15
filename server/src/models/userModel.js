@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
     fullName: {
@@ -27,5 +28,19 @@ const userSchema = new mongoose.Schema({
     },
    
 }, { timestamps: true });
+
+//Password Hash middleware
+userSchema.pre("save", async function(next){
+    if (!this.isModified("password")) return next();
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+})
+
+//Match User entered password with hashed password
+userSchema.methods.comparePassword = async function(enteredPassword) {
+    return await bcrypt.compare(enteredPassword, this.password)
+}
+
 
 export const User = mongoose.model("User", userSchema)

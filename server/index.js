@@ -7,6 +7,7 @@ import DatabaseConnection from './src/db/DatabaseConnection.js';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import { app, server } from './socketServer.js';
+
 import path from 'path';
 
 dotenv.config({

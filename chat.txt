@@ -9,4 +9,4 @@
 -> 5. solve the npm run build error
 -> 6. push the code on github  
 -> 7. than update the projects on renders 
--> 7.
+-> 8. all the routes comming form the redux store

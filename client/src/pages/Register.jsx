@@ -2,8 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom"
+import { getAlltheUsers } from "../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
+    const dispatch = useDispatch();
 
     const [registerdata, setregisterdata] = useState(
         {
@@ -39,11 +42,12 @@ const Register = () => {
             })
             if (res.data.success) {
                 toast.success(res.data.message);
+                dispatch(getAlltheUsers());
                 console.log('res', res)
                 navigate("/login");
             }
         } catch (error) {
-            console.log('login', error)
+            console.log('register', error)
         }
     }
 

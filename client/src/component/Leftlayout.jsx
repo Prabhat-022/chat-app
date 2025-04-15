@@ -2,10 +2,8 @@ import { useState } from "react";
 import LoginUser from "./LoginUser"
 import User from "./User"
 import { useSelector, } from "react-redux"
-import useGetAllusers from "../hooks/useGetAllusers";
 
 const Leftlayout = () => {
-    useGetAllusers()
     const [search, setSearch] = useState("");
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [showAllUsers, setShowAllUsers] = useState(false);

@@ -20,6 +20,7 @@ router.route("/register").post(
 
 router.route("/login").post(Login);
 router.route('/logout').get(logOut)
-router.route("/").get(protect, getAllUser);
+router.route("/").get(isAuthenticated, getAllUser);
+
 
 export default router;

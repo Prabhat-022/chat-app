@@ -2,16 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom"
-<<<<<<< HEAD
 import { getAlltheUsers } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
-=======
-import { useDispatch } from "react-redux";
-import { register } from "../redux/userSlice";
->>>>>>> ea8f39e (fixed some bugs)
 
 const Register = () => {
-    const dispatch = useDispatch();
 
     const [registerdata, setregisterdata] = useState(
         {
@@ -56,7 +50,6 @@ const Register = () => {
         // }
         
         try {
-<<<<<<< HEAD
             const res = await axios.post("http://localhost:4000/api/v1/user/register", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -65,21 +58,11 @@ const Register = () => {
             if (res.data.success) {
                 toast.success(res.data.message);
                 dispatch(getAlltheUsers());
-=======
-            const res = await dispatch(register(formData));
-            console.log('register res', res)
-            if (res.payload.success) {
-                toast.success(res.payload.message);
->>>>>>> ea8f39e (fixed some bugs)
                 console.log('res', res)
                 navigate("/login");
             }
         } catch (error) {
-<<<<<<< HEAD
             console.log('register', error)
-=======
-            console.log('Register', error)
->>>>>>> ea8f39e (fixed some bugs)
         }
     }
        

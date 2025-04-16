@@ -1,11 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-<<<<<<< HEAD
 import { getAlltheUsers, setLoginUser } from "../redux/userSlice";
-=======
-import { login } from "../redux/userSlice";
->>>>>>> ea8f39e (fixed some bugs)
 import {toast}  from 'react-hot-toast';
 
 const Login = () => {

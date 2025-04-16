@@ -1,11 +1,7 @@
 import { useState, useMemo } from "react";
 import LoginUser from "./LoginUser"
 import User from "./User"
-<<<<<<< HEAD
 import { useSelector, } from "react-redux"
-=======
-import { useDispatch, useSelector } from "react-redux"
->>>>>>> ea8f39e (fixed some bugs)
 
 const Leftlayout = () => {
     const [search, setSearch] = useState("");

@@ -1,8 +1,11 @@
 import { Link, useNavigate } from "react-router-dom"
-import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
+<<<<<<< HEAD
 import { getAlltheUsers, setLoginUser } from "../redux/userSlice";
+=======
+import { login } from "../redux/userSlice";
+>>>>>>> ea8f39e (fixed some bugs)
 import {toast}  from 'react-hot-toast';
 
 const Login = () => {
@@ -17,7 +20,8 @@ const Login = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const loginUser = useSelector((store) => store?.user?.loginUser);
+    // const {user} = useSelector((state) => state?.loginUser);
+    // console.log('user', user)
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -34,11 +38,11 @@ const Login = () => {
         else {
 
             try {
-                // Determine if the identifier is an email or username
                 const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(logindata.identifier);
                 const dataToSend = isEmail ? { email: logindata.identifier } : { userName: logindata.identifier };
                 console.log('datatosend',dataToSend);
 
+<<<<<<< HEAD
                 const response = await axios.post("http://localhost:4000/api/v1/user/login", { ...dataToSend, password: logindata.password }, {
                     withCredentials: true
                 });
@@ -55,6 +59,15 @@ const Login = () => {
                     
                     toast.success(response.data.message);
 
+=======
+                
+                const response = await dispatch(login({ ...dataToSend, password: logindata.password }));
+                console.log('login res', response)
+                if (response.payload.success) {
+                    // dispatch((response.payload.user));
+                    navigate("/home");
+                    toast.success(response.payload.message);
+>>>>>>> ea8f39e (fixed some bugs)
                 }
 
             } catch (error) {
@@ -69,11 +82,6 @@ const Login = () => {
             }
         }
 
-        if (loginUser) {
-            localStorage.setItem("loginUser",
-                JSON.stringify(loginUser))
-
-        }
     }
    
 

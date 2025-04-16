@@ -1,10 +1,8 @@
-import useGetAllTheMessage from "../hooks/useGetAllTheMessage";
 import useGetSocket from "../hooks/useGetSocket";
 import Chatboard from "./Chatboard"
 
 const Rightlayout = () => {
   useGetSocket();
-  useGetAllTheMessage();
 
   return (
     <>

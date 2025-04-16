@@ -1,28 +1,23 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import LoginUser from "./LoginUser"
 import User from "./User"
+<<<<<<< HEAD
 import { useSelector, } from "react-redux"
+=======
+import { useDispatch, useSelector } from "react-redux"
+>>>>>>> ea8f39e (fixed some bugs)
 
 const Leftlayout = () => {
     const [search, setSearch] = useState("");
-    const [filteredUsers, setFilteredUsers] = useState([]);
-    const [showAllUsers, setShowAllUsers] = useState(false);
+    const {userData, toggleChat, loginUser} = useSelector((store) => store.user);
 
-    const toggleChat = useSelector((store) => store?.user?.toggleChat);
-
-    const userData = useSelector((store) => store?.user.userData);
-
-    const loginUser = useSelector((store) => store?.user?.loginUser)
-    const user = userData?.filter((item) => item?.email !== loginUser?.email);
+    const filteredUsers = useMemo(() => (
+        search.trim() ? userData.filter((item) => item.email !== loginUser.email && item.fullName.toLowerCase().includes(search.toLowerCase())) : []
+    ), [search, userData, loginUser]);
 
     const handleSearch = () => {
-        const filtered = user.filter((item) => item?.fullName.toLowerCase().includes(search.toLowerCase()));
-        setFilteredUsers(filtered);
-        setSearch(""); // Clear the search input after filtering
-        setShowAllUsers(false); // Ensure all users are not shown after filtering
+        setSearch("");
     }
-
-
 
     return (
         <>
@@ -39,20 +34,18 @@ const Leftlayout = () => {
                     <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200 font-medium" onClick={handleSearch}>Search</button>
                 </div>
                 <div className="overflow-y-auto h-[calc(80vh-180px)] scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
-                    {
-                        filteredUsers.length > 0 ? (
-                            filteredUsers.map((item) => (
-                                <User key={item._id} item={item} />
-                            ))
-                        ) : (
-                            !user?.map((item) => (
-                                <User key={item._id} item={item} />
-                            ))
-                        )
+                    {filteredUsers.length > 0 ? (
+                        filteredUsers.map((item) => (
+                            <User key={item._id} item={item}/>
+                        ))
+                    ) : (
+                        !toggleChat && userData?.map((item) => (
+                            <User key={item._id} item={item}/>
+                        ))
+                    )}
 
-                    }
                     {
-                       !toggleChat && user?.map((item) => (
+                        userData.map((item) => (
                             <User key={item._id} item={item} />
                         ))
                     }

@@ -2,8 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom"
+<<<<<<< HEAD
 import { getAlltheUsers } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
+=======
+import { useDispatch } from "react-redux";
+import { register } from "../redux/userSlice";
+>>>>>>> ea8f39e (fixed some bugs)
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -19,6 +24,7 @@ const Register = () => {
     );
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     console.log('avtar', registerdata.avatar)
     //handle the register router
@@ -34,7 +40,23 @@ const Register = () => {
         formData.append("avatar", registerdata.avatar); // Append the file
 
 
+        // try {
+        //     const res = await axios.post("http://localhost:4000/api/v1/user/register", formData, {
+        //         headers: {
+        //             "Content-Type": "multipart/form-data",
+        //         },
+        //     })
+        //     if (res.data.success) {
+        //         toast.success(res.data.message);
+        //         console.log('res', res)
+        //         navigate("/login");
+        //     }
+        // } catch (error) {
+        //     console.log('Register', error)
+        // }
+        
         try {
+<<<<<<< HEAD
             const res = await axios.post("http://localhost:4000/api/v1/user/register", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -43,28 +65,37 @@ const Register = () => {
             if (res.data.success) {
                 toast.success(res.data.message);
                 dispatch(getAlltheUsers());
+=======
+            const res = await dispatch(register(formData));
+            console.log('register res', res)
+            if (res.payload.success) {
+                toast.success(res.payload.message);
+>>>>>>> ea8f39e (fixed some bugs)
                 console.log('res', res)
                 navigate("/login");
             }
         } catch (error) {
+<<<<<<< HEAD
             console.log('register', error)
+=======
+            console.log('Register', error)
+>>>>>>> ea8f39e (fixed some bugs)
         }
     }
-
+       
     const handleFileChange = (e) => {
         setregisterdata({ ...registerdata, avatar: e.target.files[0] }); // Update avatar with the selected file
     };
 
     return (
         <>
-            <div className="sm:fixed bg-gray-900 min-h-screen min-w-screen bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ">
-
-                <div className="max-w-md w-screen space-y-8 bg-gray-700 p-8 rounded-xl shadow-2xl  ">
-                    <div>
-                        <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+            <div className="flex items-center justify-center h-screen">
+                <div className="max-w-md w-full mx-auto space-y-8 bg-gray-700 p-8 rounded-xl shadow-2xl md:p-12 md:space-y-12">
+                    <div className="text-center">
+                        <h2 className="mt-6 text-center text-3xl font-extrabold text-white md:text-4xl">
                             Create Account
                         </h2>
-                        <p className="mt-2 text-center text-sm text-gray-300">
+                        <p className="mt-2 text-center text-sm text-gray-300 md:text-base">
                             Join our community today
                         </p>
                     </div>

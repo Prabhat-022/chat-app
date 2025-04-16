@@ -81,6 +81,7 @@ import { useSelector } from 'react-redux';
 
 
 const Chat = ({ message }) => {
+    console.log('messagess', message)
 
     const loginUser = useSelector((store) => store?.user?.loginUser?._id)
     const messagesEndRef = useRef(null);
@@ -123,6 +124,7 @@ const Chat = ({ message }) => {
                         </>
                     ) :
 
+                        // message reciver
                         (
                             < div className="flex items justify-end space-x-3">
                                 <div>

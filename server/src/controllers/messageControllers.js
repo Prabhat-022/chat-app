@@ -67,6 +67,9 @@ export const sendMessage = async (req, res) => {
 }
 
 export const getAllTheMessage = async (req, res) => {
+    const token = req.headers.authorization.split(" ")[1];
+    console.log('msm token ', token )
+    console.log('msm req body', req.body)
     try {
         const sender = req.id;
         const receiver = req.params.id;

@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoginUser, setMessage, setSelectedUser, setToggleChat, setUser } from '../redux/userSlice';
+import {  getlogout, setMessage, setSelectedUser, setToggleChat, setUser } from '../redux/userSlice';
 import { setOnlineUsers } from '../redux/socketSlice';
 import toast from 'react-hot-toast';
 
@@ -10,27 +9,25 @@ const LoginUser = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    const loginUser = useSelector((store) => store.user.loginUser);
-    const login = localStorage.getItem('loginUser');
-    const user = JSON.parse(login)
+    const {loginUser} = useSelector((store) => store.user);
 
     const { socket } = useSelector(store => store.socket);
 
     const logout = async () => {
         try {
-            const response = await axios.get("http://localhost:4000/api/v1/user/logout");
+            // const response = await axios.get("http://localhost:4000/api/v1/user/logout");
+            dispatch(getlogout());
              
-            if (response.status === 200) {
-                toast.success("Logout successful");
-                console.log("Logout successful");
-            } else {
-                console.error("Logout failed");
-            }
-            console.log("clicked logout", response)
+            // if (response.status === 200) {
+            //     toast.success("Logout successful");
+            //     console.log("Logout successful");
+            // } else {
+            //     console.error("Logout failed");
+            // }
+            // console.log("clicked logout", response)
 
             navigate("/login");
             dispatch(setUser(null))
-            dispatch(setLoginUser(null))
             dispatch(setSelectedUser(null))
             dispatch(setToggleChat(null))
             dispatch(setMessage(null))
@@ -63,8 +60,8 @@ const LoginUser = () => {
                             <p className="text-sm text-gray-400">@</p>
                         </div> */}
                         <div>
-                            <h3 className="font-semibold text-white">{loginUser?.fullName || user?.fullName}</h3>
-                            <p className="text-sm text-gray-400">@{loginUser?.userName || user?.userName}</p>
+                            <h3 className="font-semibold text-white">{loginUser?.fullName }</h3>
+                            <p className="text-sm text-gray-400">@{loginUser?.userName }</p>
                         </div>
                     </div>
                     <button onClick={logout}

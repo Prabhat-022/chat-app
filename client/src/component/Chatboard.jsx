@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Chat from "./Chat";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { sendMessage } from "../redux/messageSlice";
 
 const Chatboard = () => {
 
@@ -14,45 +15,48 @@ const Chatboard = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const selectedUser = useSelector((store) => store?.user?.selectedUser);
-    const message = useSelector((store) => store?.user?.message);
+    const { selectedUser } = useSelector((store) => store?.user);
+    const {message} = useSelector((store) => store?.message);
+    console.log('message', message)
 
 
     const handleSendMessage = () => {
         if (input.trim() === "") return;
 
-        const sendMessage = async () => {
-            try {
+        //     const sendMessage = async () => {
+        //         try {
+        //             const token = localStorage.getItem('userToken');
+        //             const res = await axios.post(`http://localhost:4000/api/v1/message/send/${selectedUser?._id}`, {
+        //                 message: input
+        //             }, {
+        //                 headers: {
+        //                     "Content-Type": "application/json",
+        //                     Authorization: `Bearer ${token}`
+        //                 },
+        //                 withCredentials: true
+        //             });
 
-                const res = await axios.post(`http://localhost:4000/api/v1/message/send/${selectedUser?._id}`, {
-                    message: input
-                }, {
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    withCredentials: true
-                });
+        //             console.log('sendmessage', res.data)
 
-                console.log('sendmessage', res.data)
-                dispatch(setMessage([...message, res.data.message]));
+        //             setInput("")
 
-                setInput("")
+        //             if (!res.data.success) {
+        //                 throw new Error(res.data.message);
+        //             }
 
-                if (!res.data.success) {
-                    throw new Error(res.data.message);
-                }
+        //             console.log("Message sent successfully");
 
-                console.log("Message sent successfully");
+        //         } catch (error) {
+        //             console.log("Error sending message:", error);
+        //         }
+        //     }
+        //     sendMessage()
+        //     setInput("");
 
-            } catch (error) {
-                console.log("Error sending message:", error);
-            }
-        }
-        sendMessage()
+        // };
+        dispatch(sendMessage({ userId: selectedUser?._id, input }));
         setInput("");
-
-    };
-
+    }
 
 
     useEffect(() => {
@@ -79,7 +83,7 @@ const Chatboard = () => {
                         <div className="h-[500px] overflow-hidden overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800" >
 
                             {
-                                message && message?.map((message) => {
+                                message && Array.isArray(message) && message.map((message) => {
                                     return (
                                         <Chat key={message._id} message={message} />
                                         // </div>

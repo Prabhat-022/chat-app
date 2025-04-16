@@ -6,7 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
+<<<<<<< HEAD
     "deletedb": "node deletedbcontent.js"
+=======
+     "start": "nodemon index.js",
+    "build":"npm install && npm install --prefix client && npm run build --prefix client"
+>>>>>>> ea8f39e (fixed some bugs)
   },
   "author": "Prabhat kumar",
   

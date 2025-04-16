@@ -1,14 +1,22 @@
 import { User } from '../models/userModel.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
+
+
 import { uploadOnCloudinary } from '../utils/cloudinary.js';
 
 export const Login = async (req, res) => {
+<<<<<<< HEAD
     const { userName, email, password } = req.body;
 
     try {
 
 
+=======
+    console.log('Login data', req.body)
+    try {
+        const { userName, email, password } = req.body;
+>>>>>>> ea8f39e (fixed some bugs)
         if (!userName && !email || !password) {
             return res.status(401).json({
                 message: "Invalid data",
@@ -50,6 +58,23 @@ export const Login = async (req, res) => {
             }
         );
 
+<<<<<<< HEAD
+=======
+        const token = await jwt.sign(tokenData, process.env.JWT_SECRET_KEY, { expiresIn: '1d' })
+
+        return res.status(200)
+            .cookie("token", token, {
+                maxAge: 1 * 24 * 60 * 1000,
+                httpOnly: true,
+                sameSite: 'strict'
+            })
+            .json({
+                success: true,
+                message: "Login successful",
+                token,
+                user 
+            });
+>>>>>>> ea8f39e (fixed some bugs)
 
     } catch (error) {
         console.log(`Invalid login: ${error}`)

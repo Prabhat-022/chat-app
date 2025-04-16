@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedUser, setToggleChat } from '../redux/userSlice';
-import useGetAllTheMessage from '../hooks/useGetAllTheMessage';
+import { getAllTheMessage } from '../redux/messageSlice';
 
 const User = ({ item }) => {
-  const showAllmessage = useGetAllTheMessage()
   const dispatch = useDispatch();
   const onlineUser = useSelector((store) => store?.socket?.onlineUsers)
 
@@ -12,12 +11,10 @@ const User = ({ item }) => {
 
 
   const handleSelectedUser = (item) => {
+    dispatch(getAllTheMessage(item._id));
     dispatch(setSelectedUser(item));
     dispatch(setToggleChat(false));
-    showAllmessage();
   }
-
-
 
 
   return (
@@ -62,10 +59,6 @@ const User = ({ item }) => {
             ) :
               " "
           }
-
-
-
-
         </div>
       </div>
     </>

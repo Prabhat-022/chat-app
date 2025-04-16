@@ -2,8 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom"
-import { getAlltheUsers } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
+import { getAllUsers } from "../redux/userSlice";
 
 const Register = () => {
 
@@ -57,7 +57,7 @@ const Register = () => {
             })
             if (res.data.success) {
                 toast.success(res.data.message);
-                dispatch(getAlltheUsers());
+                dispatch(getAllUsers());
                 console.log('res', res)
                 navigate("/login");
             }

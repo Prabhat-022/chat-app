@@ -1,12 +1,12 @@
 import express from 'express';
 import dotenv from "dotenv";
-import userRoutes from './src/routes/userRoutes.js';
-import messageRoutes from './src/routes/messageRoute.js';
+import userRoutes from '../src/routes/userRoutes.js';
+import messageRoutes from '../src/routes/messageRoute.js';
 import cors from 'cors';
-import DatabaseConnection from './src/db/DatabaseConnection.js';
+import DatabaseConnection from '../src/db/DatabaseConnection.js';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import { app, server } from './socketServer.js';
+import { app, server } from '../socketServer.js';
 
 import path from 'path';
 

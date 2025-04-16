@@ -1,19 +1,19 @@
 {
     "version": 2,
-    "name":"client",
     "builds": [
-        {
-            "src": "package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "dist"
-            }
+      {
+        "src": "vite.config.js",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist" 
         }
+      }
     ],
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/"
-        }
+    "routes": [
+      {
+        "src": "/.*", 
+        "dest": "/index.html",
+        "status": 200
+      }
     ]
-}
+  }

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { getAlltheUsers, setLoginUser } from "../redux/userSlice";
+import { login } from "../redux/userSlice";
 import {toast}  from 'react-hot-toast';
 
 const Login = () => {
@@ -38,24 +38,6 @@ const Login = () => {
                 const dataToSend = isEmail ? { email: logindata.identifier } : { userName: logindata.identifier };
                 console.log('datatosend',dataToSend);
 
-<<<<<<< HEAD
-                const response = await axios.post("http://localhost:4000/api/v1/user/login", { ...dataToSend, password: logindata.password }, {
-                    withCredentials: true
-                });
-                //set token in Browser
-                console.log(response.data)
-
-                // Show success message to user
-                if (response.data.success) {
-
-                    // Navigate to home page on successful login
-                    dispatch(setLoginUser(response.data.user));
-                    dispatch(getAlltheUsers());
-                    navigate("/home");
-                    
-                    toast.success(response.data.message);
-
-=======
                 
                 const response = await dispatch(login({ ...dataToSend, password: logindata.password }));
                 console.log('login res', response)
@@ -63,7 +45,6 @@ const Login = () => {
                     // dispatch((response.payload.user));
                     navigate("/home");
                     toast.success(response.payload.message);
->>>>>>> ea8f39e (fixed some bugs)
                 }
 
             } catch (error) {
